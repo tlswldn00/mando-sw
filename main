@@ -1,0 +1,31 @@
+#include <iostream>
+#include "calculator.h"
+
+int main()
+{
+    char choice;
+    double x, y;
+    char oper;
+
+    Calculator calc(0, '+', 0); // 초기화
+
+    do
+    {
+        std::cout << "식 입력 : (ex : 2 + 3): ";
+        std::cin >> x >> oper >> y;
+
+        calc = Calculator(x, oper, y);
+        calc.calculate();
+        calc.printResult();
+
+        std::cout << "C를 입력하면 초기화, Q를 입력하면 종료, 계속 실행하려면 아무키나 누르세요 : ";
+        std::cin >> choice;
+
+        if (choice == 'C' || choice == 'c')
+        {
+            calc.clear();
+        }
+    } while (choice != 'Q' && choice != 'q');
+
+    return 0;
+}
