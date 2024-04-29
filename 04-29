@@ -1,0 +1,46 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+const int NUM_students = 10;
+const int NUM_subjects = 3;
+
+int main() {
+    double scores[NUM_students][NUM_subjects];
+    double averages[NUM_students];
+
+    for (int i = 0; i < NUM_students; ++i) {
+        cout << "학생 " << i + 1 << "의 점수를 입력하세요:\n";
+        for (int j = 0; j < NUM_subjects; ++j) {
+            string subject;
+            if (j == 0)
+                subject = "국어";
+            else if (j == 1)
+                subject = "영어";
+            else if (j == 2)
+                subject = "수학";
+
+            cout << subject << " 점수: ";
+            cin >> scores[i][j];
+        }
+    }
+
+    for (int i = 0; i < NUM_students; ++i) {
+        double sum = 0;
+        for (int j = 0; j < NUM_subjects; ++j) {
+            sum += scores[i][j];
+        }
+        averages[i] = sum / NUM_subjects;
+    }
+
+    cout << "\n학번 | 국어 | 영어 | 수학 | 평균\n";
+    for (int i = 0; i < NUM_students; ++i) {
+        cout << i + 1 << "    | ";
+        for (int j = 0; j < NUM_subjects; ++j) {
+            cout << scores[i][j] << "    | ";
+        }
+        cout << averages[i] << endl;
+    }
+
+    return 0;
+}
