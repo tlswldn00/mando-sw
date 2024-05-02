@@ -1,0 +1,69 @@
+#include <iostream>
+
+#define MAX_SIZE 5 // 스택의 최대 크기를 정의
+
+class Stack {
+private:
+    int arr[MAX_SIZE]; // 스택을 저장하기 위한 배열
+    int topIndex; 
+
+public:
+    Stack() {
+        topIndex = -1; // 스택이 비어있음을 나타내는 -1로 초기화
+    }
+
+    // 스택에 데이터를 추가
+    void push(int data) {
+        // 스택이 가득 찼는지 확인
+        if (topIndex >= MAX_SIZE - 1) {
+            std::cout << "스택이 가득 찼습니다. 더 이상 요소를 추가할 수 없습니다." << std::endl;
+            return;
+        }
+      
+        arr[++topIndex] = data;
+        std::cout << data << "를 스택에 추가했습니다." << std::endl;
+    }
+
+    // 스택에서 데이터를 제거
+    void pop() {
+        // 스택이 비어 있는지 확인
+        if (topIndex < 0) {
+            std::cout << "스택이 비어 있습니다. 더 이상 요소를 제거할 수 없습니다." << std::endl;
+            return;
+        }
+       
+        std::cout << arr[topIndex--] << "를 스택에서 제거했습니다." << std::endl;
+    }
+
+    // 스택의 가장 위에 있는 데이터를 반환
+    int top() {
+        // 스택이 비어 있는지 확인
+        if (topIndex < 0) {
+            std::cout << "스택이 비어 있습니다. 가장 위에 있는 요소가 없습니다." << std::endl;
+            return -1; 
+        }
+        // topIndex 위치에 있는 데이터를 반환
+        return arr[topIndex];
+    }
+};
+
+int main() {
+    Stack stack;
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
+    stack.push(40);
+    stack.push(50);
+    stack.push(60); // 가득 찬 스택에 데이터를 추가하려고 시도
+
+    std::cout << "가장 위에 있는 요소: " << stack.top() << std::endl;
+
+    stack.pop();
+    stack.pop();
+    stack.pop();
+    stack.pop();
+    stack.pop();
+    stack.pop(); // 비어 있는 스택에서 데이터를 제거하려고 시도
+
+    return 0;
+}
